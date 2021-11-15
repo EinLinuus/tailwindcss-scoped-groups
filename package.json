@@ -20,7 +20,7 @@
   "peerDependencies": {
     "tailwindcss": ">=2"
   },
-  "author": "EinLinuus",
+  "author": "Linus Benkner <hey@linu.us>",
   "license": "MIT",
   "bugs": {
     "url": "https://github.com/EinLinuus/tailwindcss-scoped-groups/issues"
