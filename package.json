@@ -1,6 +1,6 @@
 {
   "name": "tailwindcss-scoped-groups",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "description": "A scoped version of the group utility in TailwindCSS",
   "main": "src/index.js",
   "scripts": {},
