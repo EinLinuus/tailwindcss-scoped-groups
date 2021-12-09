@@ -3,10 +3,7 @@
   "version": "1.0.0",
   "description": "A scoped version of the group utility in TailwindCSS",
   "main": "src/index.js",
-  "scripts": {
-    "build": "npx tailwindcss -i demo/style.css -o demo/output.css",
-    "dev": "npx tailwindcss -i demo/style.css -o demo/output.css -w"
-  },
+  "scripts": {},
   "repository": {
     "type": "git",
     "url": "git+https://github.com/EinLinuus/tailwindcss-scoped-groups.git"
