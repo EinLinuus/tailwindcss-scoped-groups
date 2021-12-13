@@ -10,13 +10,11 @@ It's now also possible to create custom groups! Just create the names in your co
 
 ```js
 // tailwind.config.js
-// npx tailwindcss -i demo/style.css -o demo/out.css --watch
-
 module.exports = {
     mode: "jit",
     // ...
     plugins: [
-        require("./src/index")({
+        require("tailwindcss-scoped-groups")({
             groups: ["one", "two"],
         }),
     ],
