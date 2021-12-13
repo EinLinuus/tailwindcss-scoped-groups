@@ -41,23 +41,28 @@ let pseudoVariants = [
     'disabled',
 ].map((variant) => (Array.isArray(variant) ? variant : [variant, `:${variant}`]))
 
-const scopedGroupPlugin = plugin(({ addVariant, e, config }) => {
+module.exports = plugin.withOptions(function (options) {
+    const customGroups = options?.groups || []
+    return function({ addVariant, e }) {
 
-    for (let [variantName, state] of pseudoVariants) {
+        for (let [variantName, state] of pseudoVariants) {
+            addIt("scoped")
+            customGroups.forEach(customGroup => addIt(customGroup))
 
-        // * New addVariant API (TailwindCSS 3.x)
-        // addVariant(`group-scoped-${variantName}`, [`:merge(.group-scoped)${state} > &`, `:merge(.group-scoped)${state} *:not(.group-scoped) &`])
+            function addIt(groupName) {
+                // * New addVariant API (TailwindCSS 3.x)
+                // addVariant(`group-${groupName}-${variantName}`, [`:merge(.group-${groupName})${state} > &`, `:merge(.group-${groupName})${state} *:not(.group-${groupName}) &`])
 
-        // * Old addVariant API (TailwindCSS 1.x & 2.x)
-        addVariant( `group-scoped-${variantName}`, ({ modifySelectors, separator }) => {
-            modifySelectors(({ className }) => {
-                let groupSelector = `group-scoped${state}`
-                let itemSelector = e(`group-scoped-${variantName}${separator}${className}`)
-                return `.${groupSelector} > .${itemSelector}, .${groupSelector} *:not(.group-scoped) .${itemSelector}`
-            })
-        })
+                // * Old addVariant API (TailwindCSS 1.x & 2.x)
+                addVariant( `group-${groupName}-${variantName}`, ({ modifySelectors, separator }) => {
+                    modifySelectors(({ className }) => {
+                        let groupSelector = `group-${groupName}${state}`
+                        let itemSelector = e(`group-${groupName}-${variantName}${separator}${className}`)
+                        return `.${groupSelector} > .${itemSelector}, .${groupSelector} *:not(.group-${groupName}) .${itemSelector}`
+                    })
+                })
+            }
+        }
 
     }
 })
-
-module.exports = scopedGroupPlugin

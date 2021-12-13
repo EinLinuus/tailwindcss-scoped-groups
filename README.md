@@ -4,6 +4,27 @@ This plugins adds the `group-scoped` utility. You can use it just like `group` w
 
 This allows you to nest groups - you just have to rename `group` to `group-scoped`!
 
+## Custom names
+
+It's now also possible to create custom groups! Just create the names in your config file:
+
+```js
+// tailwind.config.js
+// npx tailwindcss -i demo/style.css -o demo/out.css --watch
+
+module.exports = {
+    mode: "jit",
+    // ...
+    plugins: [
+        require("./src/index")({
+            groups: ["one", "two"],
+        }),
+    ],
+}
+```
+
+With this config, the groups `group-one` and `group-two` are also available.
+
 ## Compatibility
 
 This plugin is compatible with TailwindCSS versions **2.x and 3.x** and the JIT compiler.
