@@ -1,7 +1,7 @@
 {
   "name": "tailwindcss-scoped-groups",
-  "version": "1.2.0",
-  "description": "A scoped version of the group utility in TailwindCSS",
+  "version": "2.0.0",
+  "description": "Custom, renamable groups for TailwindCSS",
   "main": "src/index.js",
   "scripts": {},
   "repository": {
@@ -12,10 +12,11 @@
     "tailwindcss",
     "nested groups",
     "groups",
-    "plugin"
+    "plugin",
+    "custom groups"
   ],
   "peerDependencies": {
-    "tailwindcss": ">=2"
+    "tailwindcss": ">=3"
   },
   "author": "Linus Benkner <hey@linu.us>",
   "license": "MIT",

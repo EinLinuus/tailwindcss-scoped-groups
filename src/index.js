@@ -42,28 +42,15 @@ let pseudoVariants = [
 ].map((variant) => (Array.isArray(variant) ? variant : [variant, `:${variant}`]))
 
 module.exports = plugin.withOptions(function (options) {
-    const customGroups = options?.groups || []
+    const customGroups = options?.groups || ["one", "two", "three"]
+    const groupPrefix = options?.prefix || "group-"
     return function ({ addVariant, e }) {
         for (let [variantName, state] of pseudoVariants) {
-            addIt("scoped")
             customGroups.forEach((customGroup) => addIt(customGroup))
-
             function addIt(groupName) {
-                // * New addVariant API (TailwindCSS 3.x)
-                // addVariant(`group-${groupName}-${variantName}`, [`:merge(.group-${groupName})${state} > &`, `:merge(.group-${groupName})${state} *:not(.group-${groupName}) &`])
-
-                // * Old addVariant API (TailwindCSS 1.x & 2.x)
                 addVariant(
-                    `group-${groupName}-${variantName}`,
-                    ({ modifySelectors, separator }) => {
-                        modifySelectors(({ className }) => {
-                            let groupSelector = `group-${groupName}${state}`
-                            let itemSelector = e(
-                                `group-${groupName}-${variantName}${separator}${className}`
-                            )
-                            return `.${groupSelector} > .${itemSelector}, .${groupSelector} *:not(.group-${groupName}) .${itemSelector}`
-                        })
-                    }
+                    `${groupPrefix}${groupName}-${variantName}`,
+                    `.${groupPrefix}${groupName}${state} &`
                 )
             }
         }
