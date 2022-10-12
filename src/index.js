@@ -1,6 +1,6 @@
 const plugin = require("tailwindcss/plugin")
 
-let pseudoVariants = [
+const pseudoVariants = [
     // Positional
     ["first", ":first-child"],
     ["last", ":last-child"],
@@ -45,7 +45,7 @@ module.exports = plugin.withOptions(function (options) {
     const customGroups = options?.groups || ["one", "two", "three"]
     const groupPrefix = options?.prefix || "group-"
     return function ({ addVariant, e }) {
-        for (let [variantName, state] of pseudoVariants) {
+        for (const [variantName, state] of pseudoVariants) {
             customGroups.forEach((customGroup) => addIt(customGroup))
             function addIt(groupName) {
                 addVariant(
