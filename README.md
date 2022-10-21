@@ -1,5 +1,11 @@
 # TailwindCSS scoped groups
 
+> ### UPDATE
+> Since Tailwind CSS 3.2, custom groups are available in the Tailwind CSS core:  
+> [How to use nested groups in Tailwind CSS](https://tailwindcss.com/docs/hover-focus-and-other-states#differentiating-nested-groups)
+
+---
+
 This plugin allows you to create custom groups so you can nest them.
 
 ## Custom names
